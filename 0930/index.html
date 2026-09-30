@@ -11,12 +11,12 @@
 <style>
 :root{
   --bg:#faf7f2;--card:#ffffff;--ink:#2b2622;--sub:#7a7068;--line:#e6dfd5;
-  --accent:#2f6f5e;--accent-soft:#e3efe9;--ok:#2f8a4e;
+  --accent:#2f6f5e;--accent-soft:#e3efe9;--ok:#2f8a4e;--warm:#c9773b;--warm-soft:#f6e8db;
 }
 @media (prefers-color-scheme:dark){
   :root{
     --bg:#181614;--card:#24211e;--ink:#f1ece5;--sub:#a79d93;--line:#3a3530;
-    --accent:#7cc4ad;--accent-soft:#23332e;--ok:#6fcf8e;
+    --accent:#7cc4ad;--accent-soft:#23332e;--ok:#6fcf8e;--warm:#e0a070;--warm-soft:#3a2d22;
   }
 }
 *{box-sizing:border-box}
@@ -28,36 +28,77 @@ header{padding:44px 0 28px}
 .tag{font-size:14px;color:var(--accent);font-weight:700;letter-spacing:.06em}
 h1{font-family:"Gowun Dodum","Noto Sans KR",sans-serif;font-weight:400;font-size:34px;line-height:1.3;margin:10px 0 10px}
 header p{margin:0;color:var(--sub);font-size:17px}
-section{margin:0 0 44px}
+section{margin:0 0 48px}
 .label{font-size:14px;color:var(--accent);font-weight:700;letter-spacing:.06em;margin:0 0 4px}
 h2{font-family:"Gowun Dodum","Noto Sans KR",sans-serif;font-weight:400;font-size:26px;line-height:1.35;margin:0 0 16px}
+p{margin:0 0 12px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin:0 0 12px}
 .card .t{font-weight:700;font-size:19px}
 .card .s{color:var(--sub);font-size:16px}
-.grid{display:grid;grid-template-columns:1fr;gap:12px;margin:0 0 12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 12px}
 .grid .card{margin:0}
-@media (min-width:480px){.grid{grid-template-columns:1fr 1fr}}
-.min{font-size:14px;font-weight:700;color:var(--accent)}
-.big{font-family:"Gowun Dodum","Noto Sans KR",sans-serif;font-size:28px;line-height:1.3}
+.big{font-family:"Gowun Dodum","Noto Sans KR",sans-serif;font-size:27px;line-height:1.3}
+.cap{font-size:14px;color:var(--sub);margin:8px 0 0}
+.src{font-size:14px;color:var(--sub)}
+.src a,.srclist a{color:var(--accent)}
+svg{display:block;width:100%;height:auto}
+svg text{font-family:"Noto Sans KR",sans-serif;fill:var(--ink)}
+svg .sub{fill:var(--sub)}
+svg .acc{fill:var(--accent)}
+svg .on{fill:var(--card)}
+
+/* 오늘 순서 타임라인 */
+.tl{display:flex;border-radius:14px;overflow:hidden;margin:0 0 10px}
+.tl div{padding:12px 6px;text-align:center;font-weight:700;font-size:16px;line-height:1.35;color:var(--ink)}
+.tl small{display:block;font-weight:400;font-size:13px;color:var(--sub)}
+.tl .a{flex:10;background:var(--accent-soft)}
+.tl .b{flex:8;background:var(--warm-soft)}
+.tl .c{flex:8;background:var(--accent-soft)}
+.tl .d{flex:4;background:var(--warm-soft)}
+
+/* 입력 */
 label.f{display:block;color:var(--sub);font-size:16px;margin:0 0 6px}
 .field{display:flex;align-items:center;gap:10px}
 input[type=number],input[type=text]{width:100%;min-width:0;font:inherit;font-size:22px;font-weight:700;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:10px 14px}
 input[type=text]{font-size:18px;font-weight:500}
 input:focus{outline:none;border-color:var(--accent)}
 .unit{color:var(--sub);white-space:nowrap}
-.bar{height:18px;border-radius:9px;background:var(--line);overflow:hidden;margin:16px 0 8px}
-.bar i{display:block;height:100%;width:0;background:var(--accent);border-radius:9px;transition:width .4s}
-.bar i.done{background:var(--ok)}
-.msg{font-weight:700}
-ul{margin:8px 0 0;padding-left:22px}
-li{margin:0 0 8px}
+.gauge{display:flex;align-items:center;gap:18px;margin-top:16px}
+.gauge svg{width:132px;flex:none}
+.gauge .track{fill:none;stroke:var(--line);stroke-width:12}
+.gauge .prog{fill:none;stroke:var(--accent);stroke-width:12;stroke-linecap:round;transition:stroke-dashoffset .5s}
+.gauge .prog.done{stroke:var(--ok)}
+.gauge .pct{font-family:"Gowun Dodum",sans-serif;font-size:26px}
+.msg{font-weight:700;font-size:17px;line-height:1.55}
+
+/* 인용 */
 blockquote{margin:0 0 12px;padding:18px 20px;background:var(--accent-soft);border-radius:18px;font-family:"Gowun Dodum","Noto Sans KR",sans-serif;font-size:21px;line-height:1.55}
 blockquote small{display:block;font-family:"Noto Sans KR",sans-serif;font-size:14px;color:var(--sub);margin-top:6px}
+
+/* 66일 점 */
+.dots{display:grid;grid-template-columns:repeat(11,1fr);gap:6px;margin:4px 0 10px}
+.dots i{display:block;aspect-ratio:1;border-radius:50%;background:var(--accent)}
+.dots i.miss{background:transparent;border:2px dashed var(--warm)}
+
+/* 내 손 안, 손 밖 */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 12px}
+.two .in{background:var(--accent-soft);border-radius:18px;padding:16px}
+.two .out{background:var(--warm-soft);border-radius:18px;padding:16px}
+.two .h{font-weight:700;font-size:17px;margin-bottom:6px}
+.two ul{margin:0;padding-left:20px;font-size:16px}
+.two li{margin:0 0 6px}
+.two .act{font-size:14px;color:var(--sub);margin-top:8px}
+
+/* 한 주 리듬 */
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin:0 0 8px}
+.week div{border-radius:12px;padding:10px 0;text-align:center;font-size:14px;line-height:1.4;background:var(--accent-soft)}
+.week b{display:block;font-size:16px}
+.week .rest{background:var(--warm-soft)}
+
 .check{display:flex;gap:14px;align-items:flex-start;cursor:pointer}
 .check input{width:26px;height:26px;margin-top:5px;flex:none;accent-color:var(--accent)}
-.road{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 12px}
-.road .card{margin:0;text-align:center;padding:14px 6px}
-.road .now{border:2px solid var(--accent)}
+.srclist{margin:0;padding-left:22px;font-size:14px;color:var(--sub)}
+.srclist li{margin:0 0 8px}
 footer{border-top:1px solid var(--line);padding:22px 0 44px;color:var(--sub);font-size:13px}
 footer p{margin:0 0 6px}
 </style>
@@ -69,7 +110,7 @@ footer p{margin:0 0 6px}
   <a class="back" href="../">← 전체 목록</a>
   <div class="tag">원크루 · 2026년 9월 30일</div>
   <h1>9월 결산,<br>10월 준비</h1>
-  <p>한 달을 돌아보고, 다음 한 달을 가볍게 정하는 날입니다.</p>
+  <p>대표님, 한 달 동안 수고 많으셨습니다. 오늘은 돌아보고, 다음 달을 가볍게 정합니다.</p>
 </header>
 
 <main>
@@ -77,23 +118,34 @@ footer p{margin:0 0 6px}
 <section>
   <p class="label">오늘 순서</p>
   <h2>30분, 네 가지만 봅니다</h2>
-  <div class="grid">
-    <div class="card"><div class="min">10분</div><div class="t">성과 체크</div><div class="s">9월 수익을 같이 더해 봅니다</div></div>
-    <div class="card"><div class="min">8분</div><div class="t">그래프 보기</div><div class="s">최근 3개월 판매 성과</div></div>
-    <div class="card"><div class="min">8분</div><div class="t">마음 관리</div><div class="s">마라톤 페이스 점검</div></div>
-    <div class="card"><div class="min">4분</div><div class="t">10월 목표</div><div class="s">약속 두 가지만 정합니다</div></div>
+  <div class="tl" role="img" aria-label="성과 체크 10분, 그래프 8분, 마음 관리 8분, 10월 목표 4분">
+    <div class="a">성과 체크<small>10분</small></div>
+    <div class="b">그래프<small>8분</small></div>
+    <div class="c">마음 관리<small>8분</small></div>
+    <div class="d">목표<small>4분</small></div>
   </div>
 </section>
 
 <section>
-  <p class="label">지난번 기록 · 9월 16일</p>
-  <h2>여기서 출발했습니다</h2>
+  <p class="label">지난번 기록</p>
+  <h2>9월 16일, 여기서 출발했습니다</h2>
   <div class="grid">
     <div class="card"><div class="s">한 주 수익 (9월 6일~12일)</div><div class="big">약 45만 7천 원</div></div>
     <div class="card"><div class="s">9월 목표</div><div class="big">200만 원</div></div>
-    <div class="card"><div class="s">월요일 · 화요일 수익</div><div class="big">13만 · 9만 원대</div></div>
-    <div class="card"><div class="s">매일 상품 등록</div><div class="big">10개 이상</div></div>
   </div>
+  <div class="card">
+    <div class="t">그 주 월요일과 화요일 수익</div>
+    <svg viewBox="0 0 320 120" role="img" aria-label="월요일 13만 원, 화요일 9만 원대">
+      <text x="0" y="34" font-size="15">월요일</text>
+      <rect x="58" y="16" width="200" height="26" rx="8" fill="var(--accent)"/>
+      <text x="266" y="35" font-size="15" font-weight="700">13만 원</text>
+      <text x="0" y="84" font-size="15">화요일</text>
+      <rect x="58" y="66" width="140" height="26" rx="8" fill="var(--accent)" opacity=".65"/>
+      <text x="206" y="85" font-size="15" font-weight="700">9만 원대</text>
+    </svg>
+    <p class="cap">그날 대표님은 "매일 10개 이상 등록"을 이어 가고 계셨습니다.</p>
+  </div>
+  <p class="src">출처: 2026년 9월 16일 원크루 상담에서 함께 확인한 숫자</p>
 </section>
 
 <section>
@@ -102,85 +154,182 @@ footer p{margin:0 0 6px}
   <div class="card">
     <label class="f" for="sep">9월 수익 합계</label>
     <div class="field"><input id="sep" type="number" inputmode="numeric" min="0" placeholder="0"><span class="unit">만 원</span></div>
-    <div class="bar"><i id="fill"></i></div>
-    <div class="msg" id="msg">숫자를 넣으면 200만 원까지 얼마나 왔는지 보입니다.</div>
+    <div class="gauge">
+      <svg viewBox="0 0 132 132" role="img" aria-label="200만 원 대비 달성률">
+        <circle class="track" cx="66" cy="66" r="54"/>
+        <circle class="prog" id="ring" cx="66" cy="66" r="54" transform="rotate(-90 66 66)" stroke-dasharray="339.3" stroke-dashoffset="339.3"/>
+        <text id="pct" class="pct" x="66" y="75" text-anchor="middle">0%</text>
+      </svg>
+      <div class="msg" id="msg">숫자를 넣으면 200만 원까지 얼마나 왔는지 보입니다.</div>
+    </div>
   </div>
   <div class="grid">
-    <div class="card"><label class="f" for="hol">추석 연휴 주간 수익</label><div class="field"><input id="hol" type="number" inputmode="numeric" min="0" placeholder="0"><span class="unit">만 원</span></div></div>
-    <div class="card"><label class="f" for="wk">이번 주 월·화 수익</label><div class="field"><input id="wk" type="number" inputmode="numeric" min="0" placeholder="0"><span class="unit">만 원</span></div></div>
-  </div>
-  <div class="card">
-    <div class="t">함께 확인할 것</div>
-    <ul>
-      <li>매일 10개 등록, 연휴에도 이어 가셨나요?</li>
-      <li>가격관리 프로그램은 다시 살펴보셨나요?</li>
-      <li>주말에 1,000원 이상 차이 나는 상품을 정리해 보셨나요?</li>
-    </ul>
+    <div class="card"><label class="f" for="hol">추석 연휴 주간</label><div class="field"><input id="hol" type="number" inputmode="numeric" min="0" placeholder="0"><span class="unit">만 원</span></div></div>
+    <div class="card"><label class="f" for="wk">이번 주 월·화</label><div class="field"><input id="wk" type="number" inputmode="numeric" min="0" placeholder="0"><span class="unit">만 원</span></div></div>
   </div>
 </section>
 
 <section>
   <p class="label">그래프 보기</p>
-  <h2>3개월 그래프에서 네 가지를 봅니다</h2>
+  <h2>3개월 그래프에서 네 곳을 봅니다</h2>
+  <div class="card">
+    <svg viewBox="0 0 320 170" role="img" aria-label="그래프에서 볼 네 지점을 표시한 예시 그림">
+      <line x1="16" y1="140" x2="308" y2="140" stroke="var(--line)" stroke-width="2"/>
+      <polyline points="16,118 56,104 96,92 130,80 160,108 190,116 220,98 256,74 304,56" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <g font-size="13" font-weight="700" text-anchor="middle">
+        <circle cx="130" cy="80" r="12" fill="var(--warm)"/><text class="on" x="130" y="85">2</text>
+        <circle cx="175" cy="112" r="12" fill="var(--warm)"/><text class="on" x="175" y="117">1</text>
+        <circle cx="220" cy="98" r="12" fill="var(--warm)"/><text class="on" x="220" y="103">4</text>
+        <circle cx="290" cy="61" r="12" fill="var(--warm)"/><text class="on" x="290" y="66">3</text>
+      </g>
+      <text class="sub" x="16" y="160" font-size="12">7월</text>
+      <text class="sub" x="150" y="160" font-size="12">8월</text>
+      <text class="sub" x="284" y="160" font-size="12">9월</text>
+    </svg>
+    <p class="cap">이해를 돕는 예시 그림입니다. 실제 숫자는 대표님 스토어 화면에서 함께 봅니다.</p>
+  </div>
   <div class="card"><div class="t">① 연휴 구간</div><div class="s">추석 주간에 어떻게 움직였는지 먼저 봅니다.</div></div>
   <div class="card"><div class="t">② 빠진 상품의 자리</div><div class="s">쿠쿠·테팔·필립스가 빠진 뒤 다른 상품이 그 자리를 채웠는지 봅니다.</div></div>
   <div class="card"><div class="t">③ 평균 상품 금액</div><div class="s">지난번에 올랐던 흐름이 이어지는지 봅니다.</div></div>
-  <div class="card"><div class="t">④ 줄어든 시점에 밀어 넣기</div><div class="s">판매가 줄어든 바로 그때 상품을 많이 넣었는지, 새로 올라온 상품이 있는지 봅니다.</div></div>
+  <div class="card"><div class="t">④ 줄어든 뒤 올라온 상품</div><div class="s">판매가 줄어든 시점에 상품을 많이 넣으면 새로 올라오는 상품이 생깁니다. 9월 16일 상담에서 멘토루크가 드린 조언입니다.</div></div>
 </section>
 
 <section>
-  <p class="label">마음 관리</p>
-  <h2>대표님은 마라톤을 하고 계십니다</h2>
-  <blockquote>"무조건 10개는 하자."<small>9월 16일, 대표님 말씀</small></blockquote>
-  <blockquote>"올라온 만큼 올라온 것도 감사하고, 할 수 있는 게 있다는 것도 감사하고."<small>9월 16일, 대표님 말씀</small></blockquote>
+  <p class="label">마음 관리 ①</p>
+  <h2>작은 전진이 마음을 지킵니다</h2>
+  <blockquote>"무조건 10개는 하자."<small>2026년 9월 16일 상담에서, 대표님 말씀</small></blockquote>
+  <p>대표님의 이 한마디는 연구로도 뒷받침됩니다. 테레사 애머빌과 스티븐 크레이머는 하버드 비즈니스 리뷰(2011년 5월호)에 실은 글 「작은 승리의 힘」에서, 일하는 사람의 마음에 가장 큰 힘이 되는 것은 의미 있는 일에서 조금이라도 앞으로 나아가는 것이라고 했습니다.</p>
   <div class="card">
-    <ul>
-      <li>떠나간 상품은 인연이 여기까지였던 것입니다. 남아 있는 상품이 내 것입니다.</li>
-      <li>욕먹는 일은 상품의 문제입니다. 쓱 지나가면 됩니다.</li>
-      <li>목표에 닿았든 못 닿았든, 수고한 것은 수고한 것입니다.</li>
-    </ul>
+    <svg viewBox="0 0 320 150" role="img" aria-label="하루 10개씩 쌓여 계단처럼 올라가는 그림">
+      <g fill="var(--accent)">
+        <rect x="10" y="112" width="52" height="26" rx="6" opacity=".35"/>
+        <rect x="70" y="94" width="52" height="44" rx="6" opacity=".5"/>
+        <rect x="130" y="76" width="52" height="62" rx="6" opacity=".65"/>
+        <rect x="190" y="58" width="52" height="80" rx="6" opacity=".8"/>
+        <rect x="250" y="40" width="52" height="98" rx="6"/>
+      </g>
+      <g font-size="13" text-anchor="middle">
+        <text x="36" y="104">10개</text><text x="96" y="86">20개</text><text x="156" y="68">30개</text><text x="216" y="50">40개</text><text x="276" y="32" font-weight="700">50개</text>
+        <text class="sub" x="36" y="149" font-size="12">1일</text><text class="sub" x="96" y="149" font-size="12">2일</text><text class="sub" x="156" y="149" font-size="12">3일</text><text class="sub" x="216" y="149" font-size="12">4일</text><text class="sub" x="276" y="149" font-size="12">5일</text>
+      </g>
+    </svg>
+    <p class="cap">하루 10개는 작아 보여도, 닷새면 50개입니다.</p>
   </div>
+  <p class="src">출처: Teresa M. Amabile, Steven J. Kramer, "The Power of Small Wins", Harvard Business Review, 2011년 5월호 · <a href="https://hbr.org/2011/05/the-power-of-small-wins" target="_blank" rel="noopener">원문 보기</a></p>
+</section>
+
+<section>
+  <p class="label">마음 관리 ②</p>
+  <h2>하루 빠져도 괜찮습니다</h2>
+  <p>영국 유니버시티 칼리지 런던(UCL)의 필리파 랠리 연구팀은 새 습관이 몸에 배는 데 평균 66일이 걸린다고 발표했습니다. 같은 연구에서, 하루 기회를 놓치는 것은 습관이 만들어지는 과정에 큰 영향을 주지 않았습니다. 다만 들쭉날쭉이 심한 사람은 습관을 만들지 못했습니다.</p>
+  <div class="card">
+    <div class="dots" role="img" aria-label="66개의 점. 그중 하나는 비어 있음" id="dots"></div>
+    <p class="cap">점 66개가 66일입니다. 비어 있는 하루가 있어도 줄은 이어집니다. 일요일에 못 하면 다른 날 보충하면 됩니다.</p>
+  </div>
+  <p class="src">출처: UCL News, "How long does it take to form a habit?", 2009년 8월 (Lally 외, European Journal of Social Psychology 게재 연구) · <a href="https://www.ucl.ac.uk/news/2009/aug/how-long-does-it-take-form-habit" target="_blank" rel="noopener">원문 보기</a></p>
+</section>
+
+<section>
+  <p class="label">마음 관리 ③</p>
+  <h2>내 손 안의 것만 붙잡습니다</h2>
+  <div class="two">
+    <div class="in">
+      <div class="h">내 손 안</div>
+      <ul>
+        <li>오늘 10개 등록</li>
+        <li>주말 가격 정리</li>
+        <li>나에게 "수고했다"</li>
+      </ul>
+      <div class="act">→ 여기에 힘을 씁니다</div>
+    </div>
+    <div class="out">
+      <div class="h">내 손 밖</div>
+      <ul>
+        <li>브랜드의 등록 취소</li>
+        <li>고객의 거친 말</li>
+        <li>네이버의 순위</li>
+      </ul>
+      <div class="act">→ 쓱 지나보냅니다</div>
+    </div>
+  </div>
+  <blockquote>"올라온 만큼 올라온 것도 감사하고, 할 수 있는 게 있다는 것도 감사하고."<small>2026년 9월 16일 상담에서, 대표님 말씀</small></blockquote>
   <div class="card">
     <label class="f" for="gift">9월을 달려온 나에게 주는 보상 한 가지</label>
     <input id="gift" type="text" placeholder="여기에 적어 주세요">
+    <p class="cap">목표에 닿았든 못 닿았든, 수고한 것은 수고한 것입니다.</p>
   </div>
 </section>
 
 <section>
   <p class="label">10월 목표</p>
   <h2>한 달에 50만 원만 더 올라갑니다</h2>
-  <div class="road">
-    <div class="card"><div class="s">9월</div><div class="big">200만</div></div>
-    <div class="card now"><div class="s">10월</div><div class="big">250만</div></div>
-    <div class="card"><div class="s">11월</div><div class="big">300만</div></div>
+  <div class="card">
+    <svg viewBox="0 0 320 170" role="img" aria-label="9월 200만 원, 10월 250만 원, 11월 300만 원 계단">
+      <rect x="14" y="86" width="88" height="60" rx="10" fill="var(--accent)" opacity=".4"/>
+      <rect x="116" y="62" width="88" height="84" rx="10" fill="var(--accent)"/>
+      <rect x="218" y="38" width="88" height="108" rx="10" fill="var(--accent)" opacity=".4"/>
+      <g text-anchor="middle">
+        <text x="58" y="78" font-size="17" font-weight="700">200만</text>
+        <text x="160" y="54" font-size="19" font-weight="700" class="acc">250만</text>
+        <text x="262" y="30" font-size="17" font-weight="700">300만</text>
+        <text class="sub" x="58" y="164" font-size="14">9월</text>
+        <text x="160" y="164" font-size="14" font-weight="700">10월 · 지금</text>
+        <text class="sub" x="262" y="164" font-size="14">11월</text>
+      </g>
+    </svg>
+    <p class="cap">9월 16일 상담에서 함께 정한 계단입니다.</p>
+  </div>
+  <p>목표를 세우고 진행 상황을 확인하는 일은 그냥 열심히 하는 것과 다릅니다. 에드윈 로크와 게리 레이섬은 35년간의 목표 설정 연구를 정리한 논문에서, 목표가 동기를 움직이는 방식과 피드백의 역할을 설명했습니다. 그래서 매주 한 번, 숫자를 같이 봅니다.</p>
+  <div class="card">
+    <div class="t" style="margin-bottom:10px">10월의 한 주</div>
+    <div class="week" role="img" aria-label="월요일부터 토요일까지 매일 10개 등록, 일요일은 쉬어도 됨">
+      <div><b>월</b>10개</div><div><b>화</b>10개</div><div><b>수</b>10개</div><div><b>목</b>10개</div><div><b>금</b>10개</div><div><b>토</b>10개</div><div class="rest"><b>일</b>쉼</div>
+    </div>
+    <p class="cap">주말 중 하루, 1,000원 이상 차이 나는 상품만 한 번 정리합니다.</p>
   </div>
   <label class="card check"><input type="checkbox" id="c1"><span><span class="t">매일 10개 등록</span><br><span class="s">일요일에 못 하면 다른 날에 보충합니다.</span></span></label>
-  <label class="card check"><input type="checkbox" id="c2"><span><span class="t">주말마다 가격 정리</span><br><span class="s">1,000원 이상 차이 나는 상품만 일주일에 한 번 정리합니다.</span></span></label>
+  <label class="card check"><input type="checkbox" id="c2"><span><span class="t">주말마다 가격 정리</span><br><span class="s">1,000원 이상 차이 나는 상품만 일주일에 한 번.</span></span></label>
+  <p class="src">출처: Edwin A. Locke, Gary P. Latham, "Building a Practically Useful Theory of Goal Setting and Task Motivation", American Psychologist, 57권 9호, 705~717쪽, 2002년 · <a href="https://eric.ed.gov/?id=EJ654871" target="_blank" rel="noopener">서지 정보 보기</a></p>
+</section>
+
+<section>
+  <p class="label">출처 모음</p>
+  <ol class="srclist">
+    <li>2026년 9월 16일 원크루 상담 기록: 수익 숫자, 목표 금액, 대표님 말씀, 멘토루크 조언</li>
+    <li>Amabile, T. M., Kramer, S. J. "The Power of Small Wins." Harvard Business Review, 2011년 5월호. <a href="https://hbr.org/2011/05/the-power-of-small-wins" target="_blank" rel="noopener">hbr.org</a></li>
+    <li>UCL News. "How long does it take to form a habit?" 2009년 8월. <a href="https://www.ucl.ac.uk/news/2009/aug/how-long-does-it-take-form-habit" target="_blank" rel="noopener">ucl.ac.uk</a></li>
+    <li>Locke, E. A., Latham, G. P. American Psychologist, 57(9), 705~717, 2002. <a href="https://eric.ed.gov/?id=EJ654871" target="_blank" rel="noopener">eric.ed.gov</a></li>
+  </ol>
 </section>
 
 </main>
 
 <footer>
-  <p>출처: 2026년 9월 16일 원크루 상담 녹음. 수익 숫자는 그날 함께 확인한 값입니다.</p>
   <p>입력한 내용은 이 기기의 브라우저에만 저장됩니다.</p>
-  <p>정복녀 대표님을 위한 자료입니다.</p>
+  <p>정복녀 대표님을 위한 자료입니다. 멘토루크 원크루.</p>
 </footer>
 
 </div>
 
 <script>
 (function(){
-  var ids=['sep','hol','wk','gift','c1','c2'],KEY='onecrew-jbn-0930';
+  var ids=['sep','hol','wk','gift','c1','c2'],KEY='onecrew-jbn-0930',C=339.3;
   var saved={};
   try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){saved={}}
   function el(i){return document.getElementById(i)}
-  function bar(){
-    var v=parseFloat(el('sep').value),f=el('fill'),m=el('msg');
-    if(isNaN(v)||v<0){f.style.width='0';f.className='';m.textContent='숫자를 넣으면 200만 원까지 얼마나 왔는지 보입니다.';return}
+
+  var dots=el('dots'),html='';
+  for(var n=1;n<=66;n++){html+='<i'+(n===28?' class="miss"':'')+'></i>'}
+  dots.innerHTML=html;
+
+  function gauge(){
+    var v=parseFloat(el('sep').value),r=el('ring'),t=el('pct'),m=el('msg');
+    if(isNaN(v)||v<0){r.setAttribute('stroke-dashoffset',C);r.setAttribute('class','prog');t.textContent='0%';m.textContent='숫자를 넣으면 200만 원까지 얼마나 왔는지 보입니다.';return}
     var p=Math.round(v/200*100);
-    f.style.width=Math.min(p,100)+'%';
-    if(v>=200){f.className='done';m.textContent='목표 달성입니다. 200만 원의 '+p+'%. 수고하셨습니다.'}
-    else{f.className='';m.textContent='200만 원의 '+p+'%까지 왔습니다. 남은 거리는 '+Math.round(200-v)+'만 원입니다.'}
+    r.setAttribute('stroke-dashoffset',(C*(1-Math.min(p,100)/100)).toFixed(1));
+    t.textContent=p+'%';
+    if(v>=200){r.setAttribute('class','prog done');m.textContent='목표 달성입니다. 정말 수고하셨습니다.'}
+    else{r.setAttribute('class','prog');m.textContent='200만 원까지 남은 거리는 '+Math.round(200-v)+'만 원입니다. 여기까지 온 것도 대표님이 쌓은 것입니다.'}
   }
   function save(){
     var d={};
@@ -190,10 +339,10 @@ footer p{margin:0 0 6px}
   ids.forEach(function(i){
     var e=el(i);
     if(saved[i]!==undefined){if(e.type==='checkbox'){e.checked=!!saved[i]}else{e.value=saved[i]}}
-    e.addEventListener('input',function(){save();bar()});
-    e.addEventListener('change',function(){save();bar()});
+    e.addEventListener('input',function(){save();gauge()});
+    e.addEventListener('change',function(){save();gauge()});
   });
-  bar();
+  gauge();
 })();
 </script>
 </body>
